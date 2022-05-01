@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:55:22 by vess              #+#    #+#             */
-/*   Updated: 2022/05/01 23:01:27 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/01 23:49:28 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_t		thread_death;
 	struct s_info	*info;
-	size_t			ms_eat;
+	long int		ms_eat;
 	int				finish;
 	unsigned int	nb_eat;
 }					t_philo;

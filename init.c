@@ -6,18 +6,18 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 10:00:59 by vess              #+#    #+#             */
-/*   Updated: 2022/05/01 10:03:07 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/01 23:58:40 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	init_mutex(t_info *info)
+static void	init_mutex(t_info *philo)
 {
-	pthread_mutex_init(&info->write_mutex, NULL);
-	pthread_mutex_init(&info->dead, NULL);
-	pthread_mutex_init(&info->time_eat, NULL);
-	pthread_mutex_init(&info->finish, NULL);
+	pthread_mutex_init(&philo->info.wr, NULL);
+	pthread_mutex_init(&philo->info.dead, NULL);
+	pthread_mutex_init(&philo->info.time_eat, NULL);
+	pthread_mutex_init(&philo->info.finish, NULL);
 }
 
 static int	init(t_info *info)
@@ -36,7 +36,7 @@ static int	init(t_info *info)
 		info->philos[i].nb_eat = 0;
 		info->philos[i].finish = 0;
 		info->philos[i].right = NULL;
-		pthread_mutex_init(info->philos[i].right, NULL);
+		pthread_mutex_init(&info->philos[i].left, NULL);
 		if (info->total == 1)
 			return (1);
 		if (i == info->total - 1)
