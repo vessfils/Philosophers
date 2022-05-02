@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 22:14:53 by vess              #+#    #+#             */
-/*   Updated: 2022/05/01 22:35:05 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/02 17:34:21 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,25 @@ static void	create_philos(t_info *info)
 	}
 }
 
+int	check_death2(t_info *info)
+{
+	pthread_mutex_lock(&info->dead);
+	while (info->stop)
+	{
+		pthread_mutex_unlock(&info->dead);
+		return (1);
+	}
+	pthread_mutex_unlock(&info->dead);
+	return (0);
+}
+
 static void	join_and_free_philos(t_info *info)
 {
 	int	i;
 
 	i = -1;
+	while (check_death2(info))
+		ft_usleep(1);
 	while (++i < info->total)
 		pthread_join(info->philos[i].thread, NULL);
 	pthread_mutex_destroy(&info->write_mutex);
@@ -44,7 +58,8 @@ static void	join_and_free_philos(t_info *info)
 int	main(int ac, char **av)
 {
 	t_info	info;
-
+	//t_philo philo;
+	//philo = info->philo;
 	memset(&info, 0, sizeof(info));
 	if (ac == 5 || ac == 6)
 	{
@@ -53,6 +68,8 @@ int	main(int ac, char **av)
 	}
 	else
 		return (ft_error("Error : invalid arguments"), 1);
+	info->philo = malloc(sizeof(t_philo) * info.total);
+	//info = malloc(sizeof(t_info) * tab->total);
 	create_philos(&info);
 	join_and_free_philos(&info);
 	return (0);

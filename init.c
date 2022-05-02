@@ -6,18 +6,18 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 10:00:59 by vess              #+#    #+#             */
-/*   Updated: 2022/05/01 23:58:40 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/02 17:29:19 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	init_mutex(t_info *philo)
+static void	init_mutex(t_info *info)
 {
-	pthread_mutex_init(&philo->info.wr, NULL);
-	pthread_mutex_init(&philo->info.dead, NULL);
-	pthread_mutex_init(&philo->info.time_eat, NULL);
-	pthread_mutex_init(&philo->info.finish, NULL);
+	pthread_mutex_init(&info->write_mutex, NULL);
+	pthread_mutex_init(&info->dead, NULL);
+	pthread_mutex_init(&info->time_eat, NULL);
+	pthread_mutex_init(&info->finish, NULL);
 }
 
 static int	init(t_info *info)
@@ -77,6 +77,7 @@ int	handle_args(int ac, char **av, t_info *tab)
 		tab->m_eat = ft_atoi(av[5]);
 	check_info(tab, ac);
 	tab->philos = malloc(sizeof(t_philo) * tab->total);
+	tab = malloc(sizeof(t_info) * tab->total);
 	if (!tab->philos)
 		return (ft_error("ERROR: malloc failed\n"), 1);
 	init(tab);
