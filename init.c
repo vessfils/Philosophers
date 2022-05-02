@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/01 10:00:59 by vess              #+#    #+#             */
-/*   Updated: 2022/05/02 17:29:19 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/02 22:35:49 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	init(t_info *info)
 			info->philos[i].right = &info->philos[0].left;
 		else
 			info->philos[i].right = &info->philos[i + 1].left;
-		info->philos[i].info = info;
+		//info->philos[i].info = info;
 		++i;
 	}
 	return (0);
@@ -76,8 +76,8 @@ int	handle_args(int ac, char **av, t_info *tab)
 	if (ac == 6)
 		tab->m_eat = ft_atoi(av[5]);
 	check_info(tab, ac);
-	tab->philos = malloc(sizeof(t_philo) * tab->total);
-	tab = malloc(sizeof(t_info) * tab->total);
+	//tab->philos = NULL;
+	tab->philos = (t_philo *)malloc(sizeof(t_philo) * tab->total);
 	if (!tab->philos)
 		return (ft_error("ERROR: malloc failed\n"), 1);
 	init(tab);

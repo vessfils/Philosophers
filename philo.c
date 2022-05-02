@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:54:43 by vess              #+#    #+#             */
-/*   Updated: 2022/05/01 23:48:28 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/02 22:29:12 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ void	*is_dead(void *av)
 {
 	t_philo	*philo;
 
-	philo = av;
+	philo = (t_philo *)av;
+
 	ft_usleep(philo->info->die + 1);
 	pthread_mutex_lock(&philo->info->time_eat);
 	pthread_mutex_lock(&philo->info->finish);
 	if (!check_death(philo, 0) && !philo->finish && \
-		(get_time() - philo->ms_eat) >= (long)philo->info->die)
+		((get_time() - philo->ms_eat) >= (long)(philo->info->die)))
 	{
 		pthread_mutex_unlock(&philo->info->time_eat);
 		pthread_mutex_unlock(&philo->info->finish);
@@ -78,8 +79,8 @@ void	*philo(void *av)
 {
 	t_philo	*philo;
 
-	philo = av;
-	if (philo->id % 2 == 0)
+	philo = (t_philo *)av;
+	if ((philo->id % 2) == 0)
 		ft_usleep(philo->info->eat / 10);
 	while (!check_death(philo, 0))
 	{

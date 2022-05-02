@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 22:14:53 by vess              #+#    #+#             */
-/*   Updated: 2022/05/02 17:34:21 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/02 22:38:35 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	create_philos(t_info *info)
 	i = -1;
 	while (++i < info->total)
 	{
+		info->philos[i].info = info;
 		if (pthread_create(&info->philos[i].thread, NULL, philo, \
 			&info->philos[i]))
 			return (ft_error("Pthread did not return 0\n"));
@@ -58,8 +59,7 @@ static void	join_and_free_philos(t_info *info)
 int	main(int ac, char **av)
 {
 	t_info	info;
-	//t_philo philo;
-	//philo = info->philo;
+
 	memset(&info, 0, sizeof(info));
 	if (ac == 5 || ac == 6)
 	{
@@ -68,8 +68,6 @@ int	main(int ac, char **av)
 	}
 	else
 		return (ft_error("Error : invalid arguments"), 1);
-	info->philo = malloc(sizeof(t_philo) * info.total);
-	//info = malloc(sizeof(t_info) * tab->total);
 	create_philos(&info);
 	join_and_free_philos(&info);
 	return (0);
