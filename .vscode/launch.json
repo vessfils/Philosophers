@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/philo",
-			"args": ["1", "800", "200", "200"],
+			"args": ["4", "500", "200", "2147483647"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 23:03:01 by vess              #+#    #+#             */
-/*   Updated: 2022/05/02 22:21:49 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/03 16:08:14 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void	print_msg(t_philo *philo, int msg)
 		printf(DGRAY"%ld ms", time);
 		printf(MGN" %3d ", philo->id);
 		printf("%s%s", get_clr(msg), get_msg(msg));
-		if (msg == MSG_EAT)
-			printf(" #%d", philo->nb_eat);
 		printf("\n");
 	}
 }

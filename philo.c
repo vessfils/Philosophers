@@ -6,7 +6,7 @@
 /*   By: vess <vess@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:54:43 by vess              #+#    #+#             */
-/*   Updated: 2022/05/02 22:29:12 by vess             ###   ########.fr       */
+/*   Updated: 2022/05/03 15:45:06 by vess             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	sleep_think(t_philo *philo)
 	pthread_mutex_lock(&philo->info->write_mutex);
 	print_msg(philo, MSG_THK);
 	pthread_mutex_unlock(&philo->info->write_mutex);
-
 }
 
 void	activity(t_philo *philo)
